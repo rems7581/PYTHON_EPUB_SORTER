@@ -1,8 +1,14 @@
 import ebooklib
 from ebooklib import epub
 
-book = epub.read_epub('sample.epub')
-
-print(book.get_metadata('DC', 'title'))
-print(book.get_metadata('DC', 'creator'))
-print(book.get_metadata('DC', 'identifier'))
+import os
+for root, dirs, files in os.walk("./epub_sample", topdown=True):
+   for name in files:
+      if (name[-5:] == ".epub"):
+         print("File:", name)
+         try:
+            book = epub.read_epub(os.path.join(root, name))
+            print("   Title:", book.get_metadata('DC', 'title')[0][0])
+            print("   Author:", book.get_metadata('DC', 'creator')[0][0])
+         except:
+            print("Error")
