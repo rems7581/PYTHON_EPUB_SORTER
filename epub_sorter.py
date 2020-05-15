@@ -8,7 +8,15 @@ for root, dirs, files in os.walk("./epub_sample", topdown=True):
          print("File:", name)
          try:
             book = epub.read_epub(os.path.join(root, name))
-            print("   Title:", book.get_metadata('DC', 'title')[0][0])
-            print("   Author:", book.get_metadata('DC', 'creator')[0][0])
+            author = book.get_metadata('DC', 'creator')[0][0]
+            title = book.get_metadata('DC', 'title')[0][0]
+            print("   Title:", title)
+            print("   Author:", author)
+            dir = "./sorted_epub/" + author
+            print(dir)
+            if os.path.isdir(dir):
+               pass
+            else:
+               os.mkdir(dir)
          except:
-            print("Error")
+            print("error")
