@@ -55,6 +55,7 @@ for root, dirs, files in os.walk(baseDir, topdown=True):
          except Exception as e:
             print("file: " + rawName)
             print("error", e)
+            copy2(os.path.join(root, rawName), targetDir + "000_ignored_files/" + rawName)
             print("")
             errCount += 1
          #print("")
